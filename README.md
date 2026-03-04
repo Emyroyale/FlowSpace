@@ -18,13 +18,14 @@ FlowSpace is an immersive, dark-mode-first productivity web application that com
 
 FlowSpace is built with a modern "T3-style" web stack, prioritizing performance, type safety, and rapid development:
 
-*   **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
-*   **UI / Styling:** [React 19](https://react.dev/), [Tailwind CSS](https://tailwindcss.com/), [Framer Motion](https://www.framer.com/motion/)
-*   **Database / ORM:** [Prisma](https://www.prisma.io/) connecting to PostgreSQL
-*   **Authentication:** [Clerk](https://clerk.com/)
-*   **Payments:** [Stripe](https://stripe.com/)
-*   **Audio Engine:** [Howler.js](https://howlerjs.com/)
-*   **Language:** [TypeScript](https://www.typescriptlang.org/)
+![Next.js](https://img.shields.io/badge/Next.js-16.1-black?style=flat-square&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-blue?style=flat-square&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css)
+![Prisma](https://img.shields.io/badge/Prisma-5.22-2D3748?style=flat-square&logo=prisma)
+![Clerk](https://img.shields.io/badge/Auth-Clerk-6C47FF?style=flat-square)
+![Stripe](https://img.shields.io/badge/Payments-Stripe-635BFF?style=flat-square&logo=stripe)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=flat-square&logo=framer)
+![Howler.js](https://img.shields.io/badge/Audio-Howler.js-orange?style=flat-square)
 
 ## 🚀 Getting Started
 
