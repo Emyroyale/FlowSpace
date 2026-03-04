@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Default vibe: Lofi Hip Hop */
+  --vibe-bg: #1A1208;
+  --vibe-accent: #F5A623;
+  --vibe-glow: #F5A62340;
+
+  /* Core palette */
+  --bg-primary: #0D0D0D;
+  --bg-secondary: #1A1A1A;
+  --text-primary: #F5F5F5;
+  --text-muted: #888888;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Volume slider thumb */
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--vibe-accent);
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--vibe-accent);
+  cursor: pointer;
+  border: none;
+}
+
+/* Selection color */
+::selection {
+  background: var(--vibe-accent);
+  color: black;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--vibe-accent);
+  opacity: 0.4;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  opacity: 0.8;
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--vibe-accent);
+  outline-offset: 2px;
+}
