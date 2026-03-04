@@ -3,12 +3,26 @@
 import { motion } from 'framer-motion'
 import { FocusSession } from '@/lib/storage'
 import { VIBES } from '@/lib/vibes'
+import { BarChart2 } from 'lucide-react'
+import Link from 'next/link'
 
 export default function VibeChart({ sessions }: { sessions: FocusSession[] }) {
     if (sessions.length === 0) {
         return (
-            <div className="flex h-40 items-center justify-center rounded-3xl border border-white/5 bg-white/[0.02]">
-                <p className="text-sm text-white/40">No data yet</p>
+            <div className="flex flex-col items-center justify-center p-8 text-center rounded-3xl border border-white/5 bg-white/[0.02]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/5 mb-4">
+                    <BarChart2 className="h-6 w-6 text-white/50" />
+                </div>
+                <h3 className="text-lg font-clash font-medium text-white mb-1">No sessions yet</h3>
+                <p className="text-sm font-geist text-white/40 mb-6 max-w-[250px]">
+                    Complete your first focus session to start tracking your progress
+                </p>
+                <Link
+                    href="/focus"
+                    className="rounded-full bg-white/10 px-6 py-2 text-sm font-geist font-medium text-white hover:bg-white/20 transition-colors"
+                >
+                    Start Focusing →
+                </Link>
             </div>
         )
     }
