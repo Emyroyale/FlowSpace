@@ -47,7 +47,7 @@ export default function PrivacyPolicy() {
                     <section>
                         <h2 className="text-2xl font-clash text-white mb-4">5. Contact Us</h2>
                         <p>
-                            If you have any questions about this Privacy Policy, please contact us at hello@flowspace.app.
+                            If you have any questions about this Privacy Policy, please contact us at emy@royaleautomation.com.
                         </p>
                         <p className="mt-4 text-sm text-white/50">
                             Last updated: {new Date().toLocaleDateString()}
