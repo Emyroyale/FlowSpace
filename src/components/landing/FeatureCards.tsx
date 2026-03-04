@@ -3,30 +3,31 @@
 import { motion } from 'framer-motion'
 import { useVibe } from '@/context/VibeContext'
 import { VIBES } from '@/lib/vibes'
+import { EyeOff, Headphones, Timer, BrainCircuit, ShieldCheck } from 'lucide-react'
 
 const features = [
   {
-    icon: '🚫',
+    icon: EyeOff,
     title: 'Zero Distractions',
     description: 'No ads, no algorithmic feeds, no comments. Pure focus.',
   },
   {
-    icon: '🎧',
+    icon: Headphones,
     title: 'Curated Audio Vibes',
     description: 'Lofi beats, rain sounds, cafe noise, and ADHD binaural beats mapped directly to vibrant visual themes.',
   },
   {
-    icon: '⏱',
+    icon: Timer,
     title: 'Smart Timer presets',
     description: 'Sprint through a 15m quick task or sink into a 90m deep work session with one click.',
   },
   {
-    icon: '🤖',
+    icon: BrainCircuit,
     title: 'AI Accountability',
     description: 'Quick check-ins during your breaks ensure you actually return to work, not Twitter.',
   },
   {
-    icon: '🔐',
+    icon: ShieldCheck,
     title: 'Secure & Private',
     description: 'Your session length, tasks, and streaks stay with you. We don\'t sell your attention.',
   }
@@ -60,10 +61,10 @@ export default function FeatureCards() {
               }`}
           >
             <div
-              className="flex h-14 w-14 items-center justify-center rounded-xl bg-white/5 text-3xl shadow-inner mb-6"
+              className="flex h-14 w-14 items-center justify-center rounded-xl bg-white/5 shadow-inner mb-6"
               style={{ boxShadow: `inset 0 2px 10px rgba(255,255,255,0.1), 0 0 20px ${vibe.accent}15` }}
             >
-              {feature.icon}
+              <feature.icon className="w-6 h-6 text-white" />
             </div>
             <h3 className="font-clash text-2xl font-semibold text-white">
               {feature.title}

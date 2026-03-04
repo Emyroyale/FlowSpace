@@ -55,8 +55,8 @@ export default function Footer() {
           <div>
             <h4 className="font-clash text-lg font-semibold text-white mb-6 tracking-wide">Connect</h4>
             <ul className="space-y-4 font-geist text-sm text-white/50">
-              <li><a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Twitter / X</a></li>
-              <li><a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">GitHub</a></li>
+              <li><a href="https://www.linkedin.com/in/emy-kirugo-b40a78381" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">LinkedIn</a></li>
+              <li><a href="https://github.com/Emyroyale/FlowSpace" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">GitHub</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
             </ul>
