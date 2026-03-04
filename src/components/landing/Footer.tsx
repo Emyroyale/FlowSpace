@@ -57,8 +57,8 @@ export default function Footer() {
             <ul className="space-y-4 font-geist text-sm text-white/50">
               <li><a href="https://www.linkedin.com/in/emy-kirugo-b40a78381" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">LinkedIn</a></li>
               <li><a href="https://github.com/Emyroyale/FlowSpace" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">GitHub</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+              <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
             </ul>
           </div>
 
