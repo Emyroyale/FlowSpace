@@ -58,7 +58,7 @@ export default function SessionHistory({ sessions }: { sessions: FocusSession[] 
                             <div className="flex items-center gap-2 text-xs text-white/40">
                                 <span className="flex items-center gap-1">
                                     <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: vibe?.accent || '#fff' }} />
-                                    {vibe?.name || 'Unknown Vibe'}
+                                    {vibe?.label || 'Unknown Vibe'}
                                 </span>
                                 <span>•</span>
                                 <span>{timeAgo(session.timestamp)}</span>

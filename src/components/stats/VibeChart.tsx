@@ -45,7 +45,7 @@ export default function VibeChart({ sessions }: { sessions: FocusSession[] }) {
                 return (
                     <div key={vibeId} className="flex items-center gap-4">
                         <span className="w-20 shrink-0 font-geist text-sm text-white/60">
-                            {vibe.name}
+                            {vibe.label}
                         </span>
                         <div className="relative flex-1 h-3 rounded-full bg-white/5 overflow-hidden">
                             <motion.div
