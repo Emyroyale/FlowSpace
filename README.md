@@ -80,4 +80,10 @@ The aesthetic direction is **Immersive Minimal Dark**. Emphasizing deep charcoal
 For full design specifications, refer to the [DESIGN_BRIEF.md](./DESIGN_BRIEF.md).
 
 ## 📄 License
-This project is proprietary and confidential. unauthorized copying of any files, via any medium is strictly prohibited.
+This project is open for viewing and educational purposes. All rights reserved by the author.
+
+## About the Developer
+Built by Emy — Engineering Technician transitioning into data analytics, AI automation, and cloud engineering. Founder of Royale Automation LLC.
+This project demonstrates full-stack proficiency with modern web technologies, third-party API integrations, and production-ready patterns.
+
+Linkedin: emy-kirugo-b40a78381
