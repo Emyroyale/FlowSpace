@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useVibe } from '@/context/VibeContext'
 import { VIBES } from '@/lib/vibes'
+import EmailCapture from '@/components/break/EmailCapture'
 
 function hexToRgb(hex: string): [number, number, number] {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
@@ -40,9 +41,10 @@ interface RippleRing {
 
 interface SessionCompleteProps {
   sessionCount: number
+  isPaid?: boolean
 }
 
-export default function SessionComplete({ sessionCount }: SessionCompleteProps) {
+export default function SessionComplete({ sessionCount, isPaid = true }: SessionCompleteProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { activeVibe } = useVibe()
 
@@ -191,6 +193,13 @@ export default function SessionComplete({ sessionCount }: SessionCompleteProps) 
           </motion.span>
         )}
       </div>
+
+      {/* Email capture — free users only */}
+      {!isPaid && (
+        <div className="mt-4">
+          <EmailCapture />
+        </div>
+      )}
 
       {/* Go Home */}
       <motion.div

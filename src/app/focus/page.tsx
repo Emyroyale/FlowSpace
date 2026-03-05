@@ -23,7 +23,9 @@ import AICheckIn from '@/components/break/AICheckIn'
 import NextTaskInput from '@/components/break/NextTaskInput'
 import BreakCountdown from '@/components/break/BreakCountdown'
 import BreakActivities from '@/components/break/BreakActivities'
+import UpgradeModal from '@/components/break/UpgradeModal'
 import { TIMER_PRESETS, TimerPreset } from '@/lib/timer'
+import { usePaidUser } from '@/hooks/usePaidUser'
 
 /* Home button — extracted so it can use its own useState hook */
 function HomeButton({ isRunning, accent }: { isRunning: boolean; accent: string }) {
@@ -64,6 +66,9 @@ export default function FocusPage() {
     () => TIMER_PRESETS.find((p) => p.label === 'Classic') ?? TIMER_PRESETS[0]
   )
   const [breakTab, setBreakTab] = useState<'overview' | 'activities'>('overview')
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false)
+
+  const { isPaid, isLoaded: isPaidLoaded } = usePaidUser()
 
   useEffect(() => {
     const updateSize = () => setTimerSize(window.innerWidth < 768 ? 256 : 320)
@@ -138,6 +143,25 @@ export default function FocusPage() {
     }
     prevStatusRef.current = timer.status
   }, [timer.status])
+
+  // Show upgrade modal for free users when a session completes
+  const upgradeShownRef = useRef(false)
+  useEffect(() => {
+    if (
+      timer.status === 'complete' &&
+      isPaidLoaded &&
+      !isPaid &&
+      !upgradeShownRef.current
+    ) {
+      upgradeShownRef.current = true
+      const t = setTimeout(() => setShowUpgradeModal(true), 1500)
+      return () => clearTimeout(t)
+    }
+    // Reset flag when a new focus session starts
+    if (timer.status === 'running') {
+      upgradeShownRef.current = false
+    }
+  }, [timer.status, isPaid, isPaidLoaded])
 
   const isRunning = timer.status === 'running'
   const isBreakPhase = timer.status === 'complete' || timer.status === 'break'
@@ -246,7 +270,7 @@ export default function FocusPage() {
             transition={{ duration: 0.4 }}
             className="relative z-10 flex flex-col items-center gap-8"
           >
-            <SessionComplete sessionCount={timer.sessionCount} />
+            <SessionComplete sessionCount={timer.sessionCount} isPaid={isPaid} />
 
             {timer.status === 'break' && (
               <>
@@ -302,6 +326,11 @@ export default function FocusPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Upgrade modal — free users only, after session complete */}
+      {showUpgradeModal && (
+        <UpgradeModal onDismiss={() => setShowUpgradeModal(false)} />
+      )}
     </div>
   )
 }
