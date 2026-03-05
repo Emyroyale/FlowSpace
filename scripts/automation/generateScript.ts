@@ -1,0 +1,37 @@
+import * as dotenv from 'dotenv';
+import * as path from 'path';
+
+// Load environment variables from .env.local
+dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
+
+export async function generateContentScript(): Promise<string> {
+  // Using a mock script for testing the pipeline if no API key is present
+  return `Title: The Stoic Mindset for Deep Work
+Description: Overcome distractions and build unbreakable focus with these ancient Stoic principles applied to modern productivity. #Stoicism #Productivity #DeepWork
+
+Scene 1:
+Visual: A calm man standing on a mountain peak looking at the horizon, minimalist style.
+Voiceover: The modern world is engineered to distract you. Notifications, emails, endless feeds.
+
+Scene 2:
+Visual: A clean, organized desk with a single notebook and a cup of coffee.
+Voiceover: Marcus Aurelius wrote, "Concentrate every minute like a Roman on doing what's in front of you with precise and genuine seriousness."
+
+Scene 3:
+Visual: A person in deep focus, typing on a keyboard, softly lit.
+Voiceover: This is the essence of deep work. It requires stripping away the non-essential.
+
+Scene 4:
+Visual: An hourglass with sand slowly falling.
+Voiceover: Your attention is your most valuable asset. Guard it fiercely.`;
+}
+
+// For testing directly
+if (require.main === module) {
+  generateContentScript()
+    .then((script) => {
+      console.log('--- GENERATED SCRIPT ---');
+      console.log(script);
+    })
+    .catch((err) => console.error(err));
+}

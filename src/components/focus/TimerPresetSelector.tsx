@@ -48,9 +48,12 @@ export default function TimerPresetSelector({
     }
 
     return (
-        <div className="relative flex flex-col items-center gap-2">
-            {/* Preset pills */}
-            <div className="flex items-center gap-2">
+        <div className="relative flex flex-col items-center gap-2 w-full max-w-[90vw]">
+            {/* Preset pills — horizontally scrollable on mobile */}
+            <div
+                className="flex items-center gap-2 overflow-x-auto w-full pb-1"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
                 {TIMER_PRESETS.map((preset) => {
                     const isActive = preset.label === selectedPreset.label
                     const isLocked = preset.isPaid && !isPaid
@@ -66,7 +69,7 @@ export default function TimerPresetSelector({
                                     ? `${preset.label} — Pro only`
                                     : `${preset.label}: ${preset.workMinutes}m work / ${preset.breakMinutes}m break`
                             }
-                            className="relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-all"
+                            className="relative flex flex-shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-all"
                             style={{
                                 backgroundColor: isActive
                                     ? `${accent}25`

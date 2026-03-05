@@ -74,24 +74,25 @@ export default function FocusPage() {
 
   const { activeVibe } = useVibe()
 
-  const timer = useTimer()
+  const timer = useTimer({ vibeId: activeVibe, taskName: task })
   const player = useYouTubePlayer('yt-player', VIBES[activeVibe].youtubeId)
 
-  // Sync volume
+  // Sync volume whenever slider changes
   useEffect(() => {
     if (player.isReady) {
       player.setVolume(volume)
     }
   }, [volume, player.isReady])
 
-  // Play/pause music with timer
+  // Play or pause music based on timer status
   useEffect(() => {
     if (!player.isReady) return
     if (timer.status === 'running' || timer.status === 'break') {
       player.play()
-      player.setVolume(timer.status === 'break' ? volume * 0.7 : volume)
-    } else if (timer.status === 'paused') {
-      player.setVolume(volume * 0.3)
+      player.setVolume(volume)
+    } else {
+      // paused, idle, complete — stop music
+      player.pause()
     }
   }, [timer.status, player.isReady])
 
@@ -253,8 +254,8 @@ export default function FocusPage() {
                   <button
                     onClick={() => setBreakTab('overview')}
                     className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${breakTab === 'overview'
-                        ? 'bg-white/10 text-white'
-                        : 'text-white/40 hover:text-white/60'
+                      ? 'bg-white/10 text-white'
+                      : 'text-white/40 hover:text-white/60'
                       }`}
                   >
                     Overview
@@ -262,8 +263,8 @@ export default function FocusPage() {
                   <button
                     onClick={() => setBreakTab('activities')}
                     className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${breakTab === 'activities'
-                        ? 'bg-white/10 text-white'
-                        : 'text-white/40 hover:text-white/60'
+                      ? 'bg-white/10 text-white'
+                      : 'text-white/40 hover:text-white/60'
                       }`}
                   >
                     Activities

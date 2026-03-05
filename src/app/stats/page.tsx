@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { auth } from '@clerk/nextjs/server'
 import Navbar from '@/components/shared/Navbar'
 import StatCard from '@/components/stats/StatCard'
 import VibeChart from '@/components/stats/VibeChart'
@@ -7,9 +8,37 @@ import { getStats, getSessions } from '@/lib/storage'
 import { VIBES } from '@/lib/vibes'
 
 export default async function StatsPage() {
+    const { userId } = await auth()
+
+    const accent = VIBES.coffee.accent
+
+    // Show sign-in prompt if not logged in
+    if (!userId) {
+        return (
+            <div className="min-h-screen bg-[var(--bg-primary)] pt-24 pb-20">
+                <Navbar />
+                <main className="mx-auto max-w-5xl px-6">
+                    <div className="flex flex-col items-center justify-center py-32 text-center">
+                        <div className="mb-4 text-5xl">📊</div>
+                        <h1 className="font-clash text-3xl font-bold text-white mb-3">Sign in to see your stats</h1>
+                        <p className="text-white/50 font-geist mb-8 max-w-sm">
+                            Your focus sessions are saved to your account. Sign in to track streaks, minutes, and more.
+                        </p>
+                        <Link
+                            href="/sign-in"
+                            className="rounded-full px-6 py-2.5 text-sm font-medium text-black transition-all hover:scale-105"
+                            style={{ backgroundColor: accent }}
+                        >
+                            Sign In →
+                        </Link>
+                    </div>
+                </main>
+            </div>
+        )
+    }
+
     const stats = await getStats()
     const sessions = await getSessions()
-    const accent = VIBES.coffee.accent // Default for server side context since they are just stats
 
     return (
         <div className="min-h-screen bg-[var(--bg-primary)] pt-24 pb-20">

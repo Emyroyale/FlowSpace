@@ -210,7 +210,6 @@ export default function VibeBackground({ sceneOpacity = 1 }: VibeBackgroundProps
 
       {/* Per-vibe scene */}
       <AnimatePresence mode="wait">
-        {activeVibe === 'lofi' && <BoomboxScene key="lofi" accent={vibe.accent} opacity={sceneOpacity} />}
         {activeVibe === 'rain' && <RainScene key="rain" accent={vibe.accent} opacity={sceneOpacity} />}
         {activeVibe === 'coffee' && <CoffeeScene key="coffee" accent={vibe.accent} opacity={sceneOpacity} />}
         {activeVibe === 'binaural' && <BinauralScene key="binaural" accent={vibe.accent} opacity={sceneOpacity} />}
