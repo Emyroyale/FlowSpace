@@ -44,10 +44,25 @@ export function useTimer({ vibeId = 'coffee', taskName }: UseTimerProps = {}): U
   }, [vibeId, taskName])
 
   const endTimeRef = useRef<number>(0)
+  const startTimeRef = useRef<number>(0)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
   const workSecondsRef = useRef(DEFAULT_PRESET.workMinutes * 60)
   const breakSecondsRef = useRef(DEFAULT_PRESET.breakMinutes * 60)
   const warningFiredRef = useRef(false)
+
+  // Save a focus session to the DB
+  const saveSession = useCallback((durationMins: number) => {
+    if (durationMins < 1) return // don't save < 1 minute
+    fetch('/api/sessions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        durationMins,
+        vibeId: vibeIdRef.current,
+        taskName: taskNameRef.current?.trim() || undefined
+      })
+    }).catch(err => console.error('Failed to save session to DB:', err))
+  }, [])
 
   const clearTimer = useCallback(() => {
     if (intervalRef.current) {
@@ -71,15 +86,7 @@ export function useTimer({ vibeId = 'coffee', taskName }: UseTimerProps = {}): U
             setSessionCount((c) => c + 1)
 
             // Save the completed session to the database
-            fetch('/api/sessions', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                durationMins: Math.round(workSecondsRef.current / 60),
-                vibeId: vibeIdRef.current,
-                taskName: taskNameRef.current?.trim() || undefined
-              })
-            }).catch(err => console.error('Failed to save session to DB:', err))
+            saveSession(Math.round(workSecondsRef.current / 60))
 
             return 'complete'
           }
@@ -99,6 +106,7 @@ export function useTimer({ vibeId = 'coffee', taskName }: UseTimerProps = {}): U
     const total = workSecondsRef.current
     setTotalSeconds(total)
     setRemainingSeconds(total)
+    startTimeRef.current = Date.now()
     endTimeRef.current = Date.now() + total * 1000
     warningFiredRef.current = false  // reset for fresh session
     setStatus('running')
@@ -130,11 +138,17 @@ export function useTimer({ vibeId = 'coffee', taskName }: UseTimerProps = {}): U
 
   const skip = useCallback(() => {
     clearTimer()
+    // Save partial session if at least 1 minute has elapsed
+    if (startTimeRef.current > 0) {
+      const elapsedMins = Math.floor((Date.now() - startTimeRef.current) / 60000)
+      saveSession(elapsedMins)
+      startTimeRef.current = 0
+    }
     const total = workSecondsRef.current
     setTotalSeconds(total)
     setRemainingSeconds(total)
     setStatus('idle')
-  }, [clearTimer])
+  }, [clearTimer, saveSession])
 
   const reset = useCallback(() => {
     clearTimer()

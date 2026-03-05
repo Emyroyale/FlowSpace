@@ -32,7 +32,7 @@ export default function Navbar() {
         <SignedIn>
           <Link
             href="/stats"
-            className="text-sm font-medium text-white/60 transition-colors hover:text-white mr-2"
+            className="rounded-full border border-white/20 px-4 py-1.5 text-sm font-medium text-white/70 transition-all hover:border-white/40 hover:text-white hover:bg-white/5"
           >
             Stats
           </Link>
