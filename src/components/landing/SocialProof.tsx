@@ -36,7 +36,7 @@ const testimonials = [
     avatar: "M"
   },
   {
-    quote: "The binaural beats vibe is pure magic for my ADHD brain. Best $4/mo I spend.",
+    quote: "The binaural beats vibe is pure magic for my ADHD brain. Best $9/mo I spend.",
     author: "Elena R.",
     role: "Freelance Writer",
     avatar: "E"

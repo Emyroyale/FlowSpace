@@ -26,7 +26,7 @@ export async function POST(req: Request) {
                             name: 'FlowSpace Pro',
                             description: 'Unlimited focus sessions, all ambient vibes, and detailed analytics.',
                         },
-                        unit_amount: 400, // $4.00
+                        unit_amount: 900, // $9.00
                         recurring: {
                             interval: 'month',
                         },

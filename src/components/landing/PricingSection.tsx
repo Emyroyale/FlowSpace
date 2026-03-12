@@ -24,7 +24,7 @@ const plans = [
   },
   {
     name: 'FlowSpace Pro',
-    price: '$4',
+    price: '$9',
     period: '/month',
     features: [
       'Unlimited focus sessions',
@@ -105,7 +105,7 @@ export default function PricingSection() {
         />
 
         {plans.map((plan, i) => {
-          const displayedPrice = plan.isPro && isAnnual ? '$39' : plan.price
+          const displayedPrice = plan.isPro && isAnnual ? '$86' : plan.price
           const displayedPeriod = plan.isPro && isAnnual ? '/year' : plan.period
 
           return (

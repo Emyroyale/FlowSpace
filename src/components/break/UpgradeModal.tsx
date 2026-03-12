@@ -74,7 +74,7 @@ export default function UpgradeModal({ onDismiss }: UpgradeModalProps) {
                     Want unlimited sessions<br />+ AI check-ins?
                 </h3>
                 <p className="mb-1 text-3xl font-extrabold" style={{ color: accent }}>
-                    $4<span className="text-base font-medium text-white/40">/month</span>
+                    $9<span className="text-base font-medium text-white/40">/month</span>
                 </p>
 
                 {/* Feature bullets */}
